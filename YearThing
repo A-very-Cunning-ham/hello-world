@@ -1,0 +1,102 @@
+// ****************************************************************
+// Dates.java
+//
+// Determine whether a 2nd-millenium date entered by the user
+// is valid      	
+// ****************************************************************
+import java.util.Scanner;
+ 
+public class Dates
+{
+	public static void main(String[] args)
+	{
+  	int month, day, year;   //date read in from user
+  	int daysInMonth;        //number of days in month read in
+  	boolean monthValid, yearValid, dayValid;  //true if input from user is valid
+  	boolean leapYear;       //true if user's year is a leap year
+ 
+  	Scanner scan = new Scanner(System.in);
+ 
+  	//Get integer month, day, and year from user
+      System.out.print("Enter month (1 is Jan, 2 is Feb, etc...): ");
+      month = scan.nextInt();
+      System.out.print("Enter day: ");
+      day = scan.nextInt();
+      System.out.print("Enter year (in the 2nd-millenium) : ");
+      year = scan.nextInt();
+ 
+  	//Check to see if month is valid
+      if (month >= 1 && month <= 12){
+        monthValid = true;
+      }else{
+        monthValid = false;
+      }
+        
+ 
+  	//Check to see if year is valid
+      if (year >= 1000 && year <= 1999){
+        yearValid = true;
+      }else{
+        yearValid = false;
+      }
+ 
+  	//Determine whether it's a leap year
+      if ((year%400)==0){
+        leapYear = true;
+      }else if (((year%4)==0) && ((year%100)!=0)){
+        leapYear = true;
+      }else{
+        leapYear = false;
+      }
+        
+ 
+  	//Determine number of days in month
+      if (month == 1){
+        daysInMonth = 31;
+      }else if ((month == 2) && (leapYear == false)){
+        daysInMonth = 28;
+      }else if ((month == 2 && leapYear == true)){
+        daysInMonth = 29;
+      }else if (month == 3){
+        daysInMonth = 31;
+      }else if (month == 4){
+        daysInMonth = 30;
+      }else if (month == 5){
+        daysInMonth = 31;
+      }else if (month == 6){
+        daysInMonth = 30;
+      }else if (month == 7){
+        daysInMonth = 31;
+      }else if (month == 8){
+        daysInMonth = 31;
+      }else if (month == 9){
+        daysInMonth = 30;
+      }else if (month == 10){
+        daysInMonth = 31;
+      }else if (month == 11){
+        daysInMonth = 30;
+      }else if (month == 12){
+        daysInMonth = 31;
+      }else{
+        daysInMonth = 0;
+      }
+        
+  	//User number of days in month to check to see if day is valid
+      if (day <= daysInMonth && day >= 1){
+        dayValid = true;
+      }else{
+        dayValid = false;
+      }
+ 
+  	//Determine whether date is valid and print appropriate message
+      if (monthValid == true && dayValid == true && yearValid == true && leapYear == true){
+        System.out.println("Date is valid and it's a leap year");
+      }else if (monthValid == true && dayValid == true && yearValid == true && leapYear == false){
+        System.out.println("Date is valid and it's not a leap year");
+      }else{
+        System.out.println("Date is not valid");
+      }
+      
+ 
+	}
+}
